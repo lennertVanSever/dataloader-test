@@ -1,6 +1,7 @@
 import { buildSchema } from 'graphql';
+import { gql } from 'apollo-server-express';
 
-const types = `
+const typeDefs = gql`
   type Author {
     id: Int
     first_name: String
@@ -16,14 +17,12 @@ const types = `
     content: String
     date: String
   }
-`;
 
-const queries = `
   type Query {
     authors: [Author]
   }
 `;
 
 module.exports = {
-  typeDefs: [types, queries]
+  typeDefs
 }

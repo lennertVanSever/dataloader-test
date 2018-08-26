@@ -1,22 +1,17 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import { ApolloServer, gql } from 'apollo-server';
 
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-import { data } from './data/Data';
+import { resolvers } from './data/resolvers';
+import { typeDefs } from './data/Schema';
+import loaders from './data/loaders';
 
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    loaders
+  }
+});
 
-
-const app = express();
-const port = 8000;
-
-
-app.listen(port, () => console.log(`App running on localhost:${port}`));
-app.use(cors());
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema: data
-}));
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql'
-}));
+server.listen().then(({ url }) => {
+  console.log(`🚀  ${url}`);
+});
