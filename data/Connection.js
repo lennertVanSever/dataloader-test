@@ -4,7 +4,14 @@ import dotenv from 'dotenv';
 dotenv.load();
 
 const { host, user, password, database } = process.env;
-const connection = mysql.createConnection({ host, user, password, database });
+
+const connection = mysql.createConnection({
+  host,
+  user,
+  password,
+  database,
+  multipleStatements: true
+});
 
 connection.connect(function(err) {
   if (err) {

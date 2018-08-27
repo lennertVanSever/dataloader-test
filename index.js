@@ -8,7 +8,16 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: {
-    loaders
+    loaders //Check why this is necessary
+  },
+  engine: {
+    apiKey: process.env.API_KEY_APOLLO_ENGINE
+  },
+  playground: {
+    settings: {
+      'editor.theme': 'light',
+      'editor.cursorShape': 'line'
+    },
   }
 });
 
