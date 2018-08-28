@@ -14,16 +14,14 @@ const server = new ApolloServer({
     apiKey: process.env.API_KEY_APOLLO_ENGINE
   },
   introspection: true,
-  playground: true
+  playground: {
+    settings: {
+      'editor.theme': 'light',
+      'editor.cursorShape': 'line'
+    },
+  }
 });
 
-/*
-playground: {
-  settings: {
-    'editor.theme': 'light',
-    'editor.cursorShape': 'line'
-  },
-}*/
 
 const port = process.env.PORT || 4000;
 server.listen({ port }).then(({ url }) => {
