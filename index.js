@@ -4,6 +4,8 @@ import { resolvers } from './data/resolvers';
 import { typeDefs } from './data/Schema';
 import loaders from './data/loaders';
 
+
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -22,6 +24,6 @@ const server = new ApolloServer({
 });
 
 const PORT = 4000 || process.env.PORT;
-server.listen(PORT).then(({ url }) => {
+server.listen({port: PORT}).then(({ url }) => {
   console.log(`🚀  ${url}`);
 });
