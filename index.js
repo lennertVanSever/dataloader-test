@@ -9,7 +9,9 @@ import cors from 'cors';
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  dataSources: () => loaders,
+  context: {
+    loaders
+  },
   engine: {
     apiKey: process.env.API_KEY_APOLLO_ENGINE
   },
