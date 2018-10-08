@@ -2,19 +2,11 @@ import { ApolloServer } from 'apollo-server';
 
 import { resolvers } from './data/resolvers';
 import { typeDefs } from './data/Schema';
-import loaders from './data/loaders';
-import cors from 'cors';
 
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: {
-    loaders
-  },
-  engine: {
-    apiKey: process.env.API_KEY_APOLLO_ENGINE
-  },
   introspection: true,
   playground: {
     settings: {

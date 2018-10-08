@@ -1,37 +1,20 @@
 import { buildSchema } from 'graphql';
 import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
-  union SearchResult = Author | Post
 
+const typeDefs = gql`
   type Author {
-    id: Int
     first_name: String
-    last_name: String
-    email: String
-    birthdate: String
-    added: String
-    length(unit: LengthUnit = METER): Float
-    """Example of a description"""
-    Posts: [Post!]!
+    Posts: [Post]
   }
 
   type Post {
     title: String
-    description: String
-    content: String
-    date: String
-  }
-
-  enum LengthUnit {
-    INCH
-    FOOT
-    METER
+    Author: Author
   }
 
   type Query {
-    authors: [Author]
-    search(query: String): [SearchResult]
+    posts: [Post]
   }
 `;
 
